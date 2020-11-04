@@ -10,7 +10,8 @@
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.HW2">
-        <activity android:name=".MyWebBrowser">
+        <activity android:name=".MyWebBrowser"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <!-- Include the host attribute if you want your app to respond

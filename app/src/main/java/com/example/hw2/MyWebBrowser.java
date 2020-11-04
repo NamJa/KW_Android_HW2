@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
@@ -28,6 +29,9 @@ public class MyWebBrowser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_web_browser);
+
+        // 키패드 설정 ==> editText 클릭할 때, 레이아웃이 밀리지 않고 그대로 오버랩 하여 출력
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         editText = findViewById(R.id.editText);
         webView = findViewById(R.id.webView);
@@ -85,7 +89,7 @@ public class MyWebBrowser extends AppCompatActivity {
                     {
                         editText.setText("http://" + url);
                     }
-                    webView.loadUrl(url);
+                    webView.loadUrl(editText.getText().toString());
                     InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                     im.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     return true;
@@ -95,7 +99,7 @@ public class MyWebBrowser extends AppCompatActivity {
                     {
                         editText.setText("http://" + url);
                     }
-                    webView.loadUrl(url);
+                    webView.loadUrl(editText.getText().toString());
                     InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                     im.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     return true;
